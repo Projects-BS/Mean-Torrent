@@ -11,6 +11,7 @@ FROM ubuntu:latest
 MAINTAINER MEAN.JS
 ARG DEBIAN_FRONTEND=noninteractive
 ENV TZ=America/New_York
+RUN more "/etc/environment"
 
 # 80 = HTTP, 443 = HTTPS, 3000 = MEAN.JS server, 35729 = livereload, 8080 = node-inspector
 EXPOSE 80 443 3000 35729 8080
@@ -28,14 +29,12 @@ RUN apt-get update -q  \
  make \
  build-essential \
  libkrb5-dev \
- sudo \
- apt-utils \
  && apt-get clean \
  && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
 # Install nodejs
-RUN curl -sL https://deb.nodesource.com/setup_6.x | bash
-RUN sudo apt-get install -y nodejs \
+RUN curl -sL https://deb.nodesource.com/setup_8.x | bash
+RUN apt-get install --yes nodejs \
  && apt-get clean \
  && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
