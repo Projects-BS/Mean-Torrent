@@ -10,6 +10,8 @@ services:
      - "8080:8080"
      - "35729:35729"
     environment:
+     - TZ=America/New_York
+     - DEBIAN_FRONTEND=noninteractive
      - NODE_ENV=development
      - DB_1_PORT_27017_TCP_ADDR=db
     depends_on:
